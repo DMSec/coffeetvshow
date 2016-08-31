@@ -3,7 +3,7 @@ var host = process.env.HOST || '127.0.0.1';
 var port = process.env.PORT || '8080';
 
 var app = restify.createServer({
-  name: 'Things API Server'
+  name: 'Coffee TVShow Server'
 });
 
 app.use(restify.queryParser());
