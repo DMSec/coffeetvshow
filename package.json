@@ -1,0 +1,34 @@
+{
+  "name": "coffeetvshow",
+  "version": "0.0.1",
+  "description": "An App integrated with TVShowtime, OpenSubtitles and Webtorrent.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DMSec/coffeetvshow.git"
+  },
+  "keywords": [
+    "tvshowtime;",
+    "opensubtitle;",
+    "tvshows;",
+    "series;",
+    "webtorrent;"
+  ],
+  "author": "Douglas Marra / @douglasmsi / http://medium.com/coffeeapps / www.dmsec.com.br",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DMSec/coffeetvshow/issues"
+  },
+  "homepage": "https://github.com/DMSec/coffeetvshow",
+  "dependencies": {
+    "express": "~4.14.0",
+    "nsp": "~2.6.1",
+    "express-validator": "~2.20.8",
+    "restify": "~4.1.1",
+    "tvshowtime-api": "~1.2.1"
+  }
+}
