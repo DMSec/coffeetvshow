@@ -29,6 +29,7 @@
     "nsp": "~2.6.1",
     "express-validator": "~2.20.8",
     "restify": "~4.1.1",
-    "tvshowtime-api": "~1.2.1"
+    "tvshowtime-api": "~1.2.1",
+    "express-load": "~1.1.15"
   }
 }
