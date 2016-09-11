@@ -91,11 +91,13 @@ module.exports = function(app, passport) {
             // TVShowTime ---------------------------------
 
                 // send to tvshowtime to do the authentication
-                app.get('/auth/tvshow', passport.authenticate('tvshow', { scope : ['profile', 'email'] }));
+                app.get('/auth/tvshowtime', passport.authenticate('tvshowtime', { scope : ['profile', 'email'] }),function(req,res){
+                  console.log('passei aqui');
+                });
 
                 // the callback after google has authenticated the user
-                app.get('/auth/tvshow/callback/:code',
-                    passport.authenticate('tvshow', {
+                app.get('/auth/tvshowtime/callback?:code',
+                    passport.authenticate('tvshowtime', {
                         successRedirect : '/profile',
                         failureRedirect : '/'
                     }));
@@ -156,11 +158,13 @@ module.exports = function(app, passport) {
             // tvshowtime ---------------------------------
 
                 // send to google to do the authentication
-                app.get('/connect/tvshow', passport.authorize('tvshow', { scope : ['profile', 'email'] }));
+                app.get('/connect/tvshowtime', passport.authorize('tvshowtime', { scope :['profile', 'email'] }),function(res,req){
+                  console.log('passei aqui');
+                });
 
                 // the callback after tvshowtime has authorized the user
-                app.get('/connect/tvshow/callback/:code',
-                    passport.authorize('tvshow', {
+                app.get('/connect/tvshowtime/callback/:code',
+                    passport.authorize('tvshowtime', {
                         successRedirect : '/profile',
                         failureRedirect : '/'
                     }));
