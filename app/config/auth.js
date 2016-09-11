@@ -24,7 +24,7 @@ module.exports = {
     'tvshowAuth' : {
       'clientID'          : 'your-secret-clientID-here',
       'clientSecret'      : 'your-client-secret-here',
-      'callbackURL'       : 'http://localhost:8080/auth/tvshowtime/callback'
+      'callbackURLteste'       : 'http://localhost:8080/auth/tvshowtime/callback'
     }
 
 };
