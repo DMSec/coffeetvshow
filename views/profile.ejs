@@ -29,7 +29,7 @@
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>password</strong>: <%= user.local.password %>
                     </p>
-                    
+
                     <a href="/unlink/local" class="btn btn-default">Unlink</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
@@ -99,6 +99,28 @@
                     <a href="/unlink/google" class="btn btn-danger">Unlink</a>
                 <% } else { %>
                     <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+                <% } %>
+
+            </div>
+        </div>
+
+
+        <!-- TVShowTime INFORMATION -->
+        <div class="col-sm-11">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+
+                <% if (user.tvshowtime.token) { %>
+                    <p>
+                        <strong>id</strong>: <%= user.tvshowtime.id %><br>
+                        <strong>token</strong>: <%= user.tvshowtime.token %><br>
+                        <strong>email</strong>: <%= user.tvshowtime.email %><br>
+                        <strong>name</strong>: <%= user.tvshowtime.name %>
+                    </p>
+
+                    <a href="/unlink/tvshow" class="btn btn-danger">Unlink</a>
+                <% } else { %>
+                    <a href="/connect/tvshow" class="btn btn-danger">Connect Google</a>
                 <% } %>
 
             </div>

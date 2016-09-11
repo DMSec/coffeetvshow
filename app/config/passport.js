@@ -3,6 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var OAuth2Strategy = require('passport-oauth2');
 
 // load up the user model
 var User       = require('../models/user');
@@ -11,6 +12,8 @@ var User       = require('../models/user');
 var configAuth = require('./auth'); // use this one for testing
 
 module.exports = function(passport) {
+
+
 
     // =========================================================================
     // passport session setup ==================================================
@@ -375,5 +378,25 @@ module.exports = function(passport) {
         });
 
     }));
+
+    //#################################################################
+    // tvshowtime
+    //#######################################################################
+
+    var TvShowTimeStrategy = new OAuth2Strategy({
+          authorizationURL: 'https://www.tvshowtime.com/oauth/authorize',
+          tokenURL: 'https://api.tvshowtime.com/v1/oauth/access_token',
+          clientID: configAuth.tvshowAuth.clientID,
+          clientSecret: configAuth.tvshowAuth.clientSecret,
+          callbackURL: configAuth.tvshowAuth.callbackURL
+        },
+          function(accessToken, refreshToken, profile, cb) {
+            User.findOrCreate({ exampleId: profile.id }, function (err, user) {
+              return cb(err, user);
+            });
+          }
+    );
+
+    passport.use('tvshow', TvShowTimeStrategy);
 
 };

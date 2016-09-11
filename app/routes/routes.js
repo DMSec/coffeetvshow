@@ -88,6 +88,19 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+            // TVShowTime ---------------------------------
+
+                // send to tvshowtime to do the authentication
+                app.get('/auth/tvshow', passport.authenticate('tvshow', { scope : ['profile', 'email'] }));
+
+                // the callback after google has authenticated the user
+                app.get('/auth/tvshow/callback/:code',
+                    passport.authenticate('tvshow', {
+                        successRedirect : '/profile',
+                        failureRedirect : '/'
+                    }));
+
+
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
@@ -138,6 +151,19 @@ module.exports = function(app, passport) {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));
+
+
+            // tvshowtime ---------------------------------
+
+                // send to google to do the authentication
+                app.get('/connect/tvshow', passport.authorize('tvshow', { scope : ['profile', 'email'] }));
+
+                // the callback after tvshowtime has authorized the user
+                app.get('/connect/tvshow/callback/:code',
+                    passport.authorize('tvshow', {
+                        successRedirect : '/profile',
+                        failureRedirect : '/'
+                    }));
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
