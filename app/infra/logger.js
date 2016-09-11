@@ -1,7 +1,7 @@
-var fs = require('fs');
-var winston = require('winston');
+import fs from "fs";
+import winston from "winston";
 
-if (!fs.existsSync("logs")){
+if (!fs.existsSync("logs")) {
   fs.mkdirSync("logs");
 }
 
@@ -9,7 +9,7 @@ module.exports = new winston.Logger({
   transports: [
     new winston.transports.File({
       level: "info",
-      filename: "logs/payfast.log",
+      filename: "logs/app.log",
       maxsize: 1048576,
       maxFiles: 10,
       colorize: false
