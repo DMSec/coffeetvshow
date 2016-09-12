@@ -5,5 +5,5 @@ var port = process.env.PORT || '8080';
 
 
 app.listen(port,host, function() {
-  console.log('Coffee TVShow listening');
+  console.log('Coffee TVShow listening on http://'+host+':'+port);
 });

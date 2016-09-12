@@ -393,8 +393,17 @@ module.exports = function(passport) {
         },
           function(req, token, refreshToken, profile, done) {
 
+            ///Mudar isso aqui de lugar
+            var api = require('tvshowtime-api')
+            var tv = new api(token)
+            var usertv = tv.getUser();
+            console.log(usertv);
+            //mudar isso aqui de lugar
+
               // asynchronous
               process.nextTick(function() {
+
+
 
                   // check if the user is already logged in
                   if (!req.user) {
@@ -409,7 +418,13 @@ module.exports = function(passport) {
                               if (!user.tvshowtime.token) {
                                   user.tvshowtime.token = token;
                                   user.tvshowtime.name  = profile.displayName;
-                                  user.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+                                  //user.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+
+                                  ///Mudar isso aqui de lugar
+                                  var api = require('tvshowtime-api')
+                                  var tv = new api(token)
+                                  var usertv = tv.getUser()
+                                  //mudar isso aqui de lugar
 
                                   user.save(function(err) {
                                       if (err)
@@ -418,6 +433,12 @@ module.exports = function(passport) {
                                       return done(null, user);
                                   });
                               }
+                              ///Mudar isso aqui de lugar
+                              var api = require('tvshowtime-api')
+                              var tv = new api(token)
+                              var usertv = tv.getUser();
+
+                              //mudar isso aqui de lugar
 
                               return done(null, user);
                           } else {
@@ -446,12 +467,21 @@ module.exports = function(passport) {
                       user.tvshowtime.name  = profile.displayName;
                       //user.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
+                      ///Mudar isso aqui de lugar
+                      var api = require('tvshowtime-api')
+                      var tv = new api(token)
+                      var usertv = tv.getUser();
+
+                      //mudar isso aqui de lugar
+
                       user.save(function(err) {
                           if (err)
                               return done(err);
 
                           return done(null, user);
                       });
+
+
 
                   }
 

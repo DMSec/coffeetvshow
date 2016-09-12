@@ -100,7 +100,7 @@ module.exports = function(app, passport) {
                     passport.authenticate('tvshowtime', {
                         successRedirect : '/profile',
                         failureRedirect : '/'
-                    }));
+                    }));                
 
 
 // =============================================================================
