@@ -97,10 +97,10 @@ module.exports = function(app, passport) {
 
                 // the callback after google has authenticated the user
                 app.get('/auth/tvshowtime/callback?:code',
-                    passport.authenticate('tvshowtime', {
+                    passport.authenticate('tvshowtime',{
                         successRedirect : '/profile',
                         failureRedirect : '/'
-                    }));                
+                    }));
 
 
 // =============================================================================

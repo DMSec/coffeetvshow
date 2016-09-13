@@ -21,7 +21,7 @@ module.exports = function() {
     // configuration ===============================================================
     mongoose.connect(configDB.url); // connect to our database
 
-    require('./passport')(passport); // pass passport for configuration
+    require('./passport/passport')(passport); // pass passport for configuration
 
     app.use(cors({
       origin: "http://localhost:8080",
