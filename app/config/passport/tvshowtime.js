@@ -1,7 +1,7 @@
 var OAuth2Strategy = require('passport-oauth2');
 
 
-module.exports = function(configAuth){
+module.exports = function(configAuth,User){
   var TvShowTimeStrategy = new OAuth2Strategy({
         authorizationURL: 'https://www.tvshowtime.com/oauth/authorize',
         tokenURL: 'https://api.tvshowtime.com/v1/oauth/access_token',
@@ -12,10 +12,13 @@ module.exports = function(configAuth){
       },
         function(req, token, refreshToken, profile, done) {
 
+          ///Mudar isso aqui de lugar
+          var api = require('../tvshowtime/tvshowtime-api')
+          var tv = new api(token)
+          var usertv = tv.getUser();
+          console.log("tvshow meu "+JSON.parse(usertv));
             // asynchronous
             process.nextTick(function() {
-
-
 
                 // check if the user is already logged in
                 if (!req.user) {
@@ -25,21 +28,11 @@ module.exports = function(configAuth){
                             return done(err);
 
                         if (user) {
-
                             // if there is a user id already but no token (user was linked at one point and then removed)
                             if (!user.tvshowtime.token) {
                                 user.tvshowtime.token = token;
                                 user.tvshowtime.name  = profile.displayName;
                                 //user.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
-
-                                ///Mudar isso aqui de lugar
-                                var api = require('tvshowtime-api')
-                                var tv = new api(token)
-                                // var usertv = JSON.stringify(tv.getUser());
-                                //   var json = JSON.parse(usertv);
-                                //   var anyvar = json[0][0].result;
-                                // console.log(anyvar);
-                                //mudar isso aqui de lugar
 
                                 user.save(function(err) {
                                     if (err)
@@ -48,15 +41,6 @@ module.exports = function(configAuth){
                                     return done(null, user);
                                 });
                             }
-                            ///Mudar isso aqui de lugar
-                            var api = require('tvshowtime-api')
-                            var tv = new api(token)
-                            var usertv = JSON.stringify(tv.getUser());
-                            // ,
-                            //   json = JSON.parse(usertv),
-                            //   anyvar = json[0][0].result
-                            // console.log(anyvar);
-                            //mudar isso aqui de lugar
 
                             return done(null, user);
                         } else {
@@ -66,6 +50,12 @@ module.exports = function(configAuth){
                             newUser.tvshowtime.token = token;
                             newUser.tvshowtime.name  = profile.displayName;
                             newUser.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+
+                            ///Mudar isso aqui de lugar
+                            var api = require('tvshowtime-api')
+                            var tv = new api(token)
+                            var usertv = tv.getUser();
+                            console.log(usertv.result);
 
                             newUser.save(function(err) {
                                 if (err)
@@ -86,13 +76,10 @@ module.exports = function(configAuth){
                     //user.tvshowtime.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                     ///Mudar isso aqui de lugar
-                    var api = require('tvshowtime-api')
+                    var api = require('../tvshowtime/tvshowtime-api')
                     var tv = new api(token)
-                    var usertv = JSON.stringify(tv.getUser());
-                    //   var json = JSON.parse(usertv);
-                    //   var anyvar = json[0][0];
-                    // console.log(anyvar);
-                    //mudar isso aqui de lugar
+                    var usertv = tv.getUser();
+                    console.log(usertv.result);
 
                     user.save(function(err) {
                         if (err)
@@ -100,8 +87,6 @@ module.exports = function(configAuth){
 
                         return done(null, user);
                     });
-
-
 
                 }
 
