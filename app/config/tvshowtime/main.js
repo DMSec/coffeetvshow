@@ -3,7 +3,7 @@ var Extractor
 function Main (token) {
   Extractor = new ext(token)
 
-  this.defaultCallback = function (data) {console.log(JSON.parse(data))}
+  this.defaultCallback = function (data) {console.log(data)}
 
 }
 
