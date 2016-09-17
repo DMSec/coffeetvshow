@@ -4,11 +4,13 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/f328f754d3.js"></script>
     <style>
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
 </head>
 <body>
+  
 <div class="container">
 
     <div class="page-header text-center">
@@ -108,13 +110,12 @@
         <!-- TVShowTime INFORMATION -->
         <div class="col-sm-11">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+                <h3 class="text-warning"><span class="fa fa-television"></span> TVShowTime</h3>
 
                 <% if (user.tvshowtime.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.tvshowtime.id %><br>
                         <strong>token</strong>: <%= user.tvshowtime.token %><br>
-                        <strong>email</strong>: <%= user.tvshowtime.email %><br>
                         <strong>name</strong>: <%= user.tvshowtime.name %>
                     </p>
 

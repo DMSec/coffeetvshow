@@ -20,36 +20,6 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
-// =============================================================================
-// AUTHENTICATE (FIRST LOGIN) ==================================================
-// =============================================================================
-
-    // locally --------------------------------
-        // LOGIN ===============================
-        // show the login form
-        app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
-        });
-
-        // process the login form
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
-
-        // SIGNUP =================================
-        // show the signup form
-        app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
-
-        // process the signup form
-        app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
 
     // facebook -------------------------------
 
@@ -88,34 +58,11 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
-            // TVShowTime ---------------------------------
-
-                // send to tvshowtime to do the authentication
-                app.get('/auth/tvshowtime', passport.authenticate('tvshowtime', { scope : ['profile', 'email'] }),function(req,res){
-                  console.log('passei aqui');
-                });
-
-                // the callback after google has authenticated the user
-                app.get('/auth/tvshowtime/callback?:code',
-                    passport.authenticate('tvshowtime',{
-                        successRedirect : '/profile',
-                        failureRedirect : '/'
-                    }));
-
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
 
-    // locally --------------------------------
-        app.get('/connect/local', function(req, res) {
-            res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-        });
-        app.post('/connect/local', passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
 
     // facebook -------------------------------
 
@@ -155,19 +102,6 @@ module.exports = function(app, passport) {
             }));
 
 
-            // tvshowtime ---------------------------------
-
-                // send to google to do the authentication
-                app.get('/connect/tvshowtime', passport.authorize('tvshowtime', { scope :['profile', 'email'] }),function(res,req){
-                  console.log('passei aqui');
-                });
-
-                // the callback after tvshowtime has authorized the user
-                app.get('/connect/tvshowtime/callback/:code',
-                    passport.authorize('tvshowtime', {
-                        successRedirect : '/profile',
-                        failureRedirect : '/'
-                    }));
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
@@ -176,15 +110,7 @@ module.exports = function(app, passport) {
 // for local account, remove email and password
 // user account will stay active in case they want to reconnect in the future
 
-    // local -----------------------------------
-    app.get('/unlink/local', isLoggedIn, function(req, res) {
-        var user            = req.user;
-        user.local.email    = undefined;
-        user.local.password = undefined;
-        user.save(function(err) {
-            res.redirect('/profile');
-        });
-    });
+  
 
     // facebook -------------------------------
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {

@@ -30,7 +30,6 @@ var userSchema = mongoose.Schema({
     tvshowtime       : {
         id           : String,
         token        : String,
-        email        : String,
         name         : String
     }
 
