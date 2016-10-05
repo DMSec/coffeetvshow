@@ -54,6 +54,9 @@ module.exports = function() {
     require('../routes/PassportSocialController')(app, passport); // load our routes and pass in our app and fully configured passport
     //load routes to access the endpoint api.tvshowtime.com and realize the authentication with tvshowtime.
     require('../routes/PassportTVShowController')(app,passport);
+    //load routes to access the some paths of api.tvshowtime.com
+    require('../routes/TvShowTimeController')(app,passport);
+
 
     app.use(expressValidator()); //Obrigatoriamente logo apos o bodyParser
 

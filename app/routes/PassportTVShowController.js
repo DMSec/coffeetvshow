@@ -24,6 +24,12 @@ module.exports = function(app, passport) {
                       failureRedirect : '/'
         }));
 
+
+        app.get('/tvshowtime/watch',passport.authorize('tvshowtime',{
+                          successRedirect : '/listWatch',
+                          failureRedirect : '/'
+        }));
+
         // google ---------------------------------
         app.get('/unlink/tvshowtime', isLoggedIn, function(req, res) {
             var user          = req.user;
