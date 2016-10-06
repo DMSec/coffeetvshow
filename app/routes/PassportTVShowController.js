@@ -1,3 +1,7 @@
+var Client = require('node-rest-client').Client;
+
+var baseURL = require('../config/api-clients/settings.json').api;
+
 module.exports = function(app, passport) {
 
   // TVShowTime ---------------------------------
@@ -24,11 +28,31 @@ module.exports = function(app, passport) {
                       failureRedirect : '/'
         }));
 
+        //Rota para lista episodios a serem assistidos...
+        app.get('/tvshowtime/watch',isLoggedIn,function(req,res,next){
+            var user = req.user;
+            if(user.tvshowtime.token != undefined){
+                  var client = new Client();
+                  var args = {
+                      path: { "access_token": user.tvshowtime.token }, // path substitution var
+                      headers: { "test-header": "client-api" } // request headers
+          };
+              // registering remote methods
+              client.registerMethod("jsonMethod", baseURL+"/to_watch?&req=user&access_token=${access_token}", "GET");
 
-        app.get('/tvshowtime/watch',passport.authorize('tvshowtime',{
-                          successRedirect : '/listWatch',
-                          failureRedirect : '/'
-        }));
+          client.methods.jsonMethod(args, function (data, res) {
+            console.log( user.tvshowtime.token );
+            console.log(data.episodes[0].id);
+            console.log("Teste");
+            return next();
+          });
+
+
+            }
+        });
+
+
+
 
         // google ---------------------------------
         app.get('/unlink/tvshowtime', isLoggedIn, function(req, res) {
