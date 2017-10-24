@@ -19,7 +19,10 @@ module.exports = function() {
 
     var app      = express();
     // configuration ===============================================================
-    mongoose.connect(configDB.url); // connect to our database
+    mongoose.Promise = require('bluebird');
+    mongoose.connect(configDB.url,{
+	useMongoClient: true
+	}); // connect to our database
 
     require('./passport/passport')(passport); // pass passport for configuration
 
