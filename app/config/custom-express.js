@@ -43,9 +43,12 @@ module.exports = function() {
     app.set('view engine', 'ejs'); // set up ejs for templating
     app.use(express.static('../public'));
     // required for passport
+    
+    app.set('trust proxy', 1) // trust first proxy    
     app.use(session({ secret: 'coffeetvshowtimethebestever',
                       resave: true,
-                      saveUninitialized: true
+                      saveUninitialized: true,
+			cookie: { secure : true }
                     })); // session secret
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
