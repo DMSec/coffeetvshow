@@ -11,6 +11,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var SessionStore  = require('connect-redis')(session);
+
 var configDB = require('./database.js');
 var cors = require('cors');
 
@@ -33,7 +35,6 @@ module.exports = function() {
     }));
 
 
-
     // set up our express application
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
@@ -43,13 +44,21 @@ module.exports = function() {
     app.set('view engine', 'ejs'); // set up ejs for templating
     app.use(express.static('../public'));
     // required for passport
-    
-    app.set('trust proxy', 1) // trust first proxy    
-    app.use(session({ secret: 'coffeetvshowtimethebestever',
-                      resave: true,
-                      saveUninitialized: true,
-			cookie: { secure : true }
-                    })); // session secret
+
+    app.set('trust proxy', 1); // trust first proxy
+
+
+
+      app.use(session({
+          key: '92A7-9AC',
+          secret: '33D203B7-443B',
+          store: new SessionStore({
+              cookie: { domain: '.appspot.com' },
+              db: 1, // Redis DB
+              host: 'appspot.com'})
+            }));
+
+
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
     app.use(flash()); // use connect-flash for flash messages stored in session

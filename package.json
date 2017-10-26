@@ -26,7 +26,8 @@
   "homepage": "https://github.com/DMSec/coffeetvshow",
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
-         "body-parser": "^1.15.2",
+    "body-parser": "^1.15.2",
+    "connect-redis": "^3.3.2",
     "connect-flash": "^0.1.1",
     "consign": "^0.1.2",
     "cookie-parser": "^1.4.3",
