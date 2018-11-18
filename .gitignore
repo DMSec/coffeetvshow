@@ -37,6 +37,8 @@ jspm_packages
 .node_repl_history
 
 auth.js
+session_token
+Constants.java
 
 database.js
 /target/
