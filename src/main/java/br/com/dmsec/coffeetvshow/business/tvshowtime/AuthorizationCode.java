@@ -7,62 +7,85 @@
 
 package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
-@SuppressWarnings("serial")
+
+
 public class AuthorizationCode extends Message {
     
-	private String device_code;
-    private String user_code;
-    private String verification_url;
-    private Integer expires_in;
+	private String deviceCode;
+    private String userCode;
+    private String verificationUrl;
+    private Integer expiresIn;
     private Integer interval;
+    
+    
 
-    public String getDevice_code() {
-        return device_code;
-    }
+    public String getDeviceCode() {
+		return deviceCode;
+	}
 
-    public void setDevice_code(String device_code) {
-        this.device_code = device_code;
-    }
 
-    public String getUser_code() {
-        return user_code;
-    }
 
-    public void setUser_code(String user_code) {
-        this.user_code = user_code;
-    }
+	public void setDeviceCode(String deviceCode) {
+		this.deviceCode = deviceCode;
+	}
 
-    public String getVerification_url() {
-        return verification_url;
-    }
 
-    public void setVerification_url(String verification_url) {
-        this.verification_url = verification_url;
-    }
 
-    public Integer getExpires_in() {
-        return expires_in;
-    }
+	public String getUserCode() {
+		return userCode;
+	}
 
-    public void setExpires_in(Integer expires_in) {
-        this.expires_in = expires_in;
-    }
 
-    public Integer getInterval() {
-        return interval;
-    }
 
-    public void setInterval(Integer interval) {
-        this.interval = interval;
-    }
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
-    @Override
+
+
+	public String getVerificationUrl() {
+		return verificationUrl;
+	}
+
+
+
+	public void setVerificationUrl(String verificationUrl) {
+		this.verificationUrl = verificationUrl;
+	}
+
+
+
+	public Integer getExpiresIn() {
+		return expiresIn;
+	}
+
+
+
+	public void setExpiresIn(Integer expiresIn) {
+		this.expiresIn = expiresIn;
+	}
+
+
+
+	public Integer getInterval() {
+		return interval;
+	}
+
+
+
+	public void setInterval(Integer interval) {
+		this.interval = interval;
+	}
+
+
+
+	@Override
     public String toString() {
         return "AuthorizationCode{" +
-                "device_code='" + device_code + '\'' +
-                ", user_code='" + user_code + '\'' +
-                ", verification_url='" + verification_url + '\'' +
-                ", expires_in=" + expires_in +
+                "device_code='" + deviceCode + '\'' +
+                ", user_code='" + userCode + '\'' +
+                ", verification_url='" + verificationUrl + '\'' +
+                ", expires_in=" + expiresIn +
                 ", interval=" + interval +
                 '}';
     }

@@ -15,56 +15,70 @@ public class ShowTST {
 	@Id
 	private Long id;
 	private String name;
-	private String seen_episodes;
-	private String aired_episodes;
+	private String seenEpisodes;
+	private String airedEpisodes;
 	private String genre;
 	private String hashtag;
 
-	private String imdb_id;
-	
-	
+	private String imdbId;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSeen_episodes() {
-		return seen_episodes;
+
+	public String getSeenEpisodes() {
+		return seenEpisodes;
 	}
-	public void setSeen_episodes(String seen_episodes) {
-		this.seen_episodes = seen_episodes;
+
+	public void setSeenEpisodes(String seenEpisodes) {
+		this.seenEpisodes = seenEpisodes;
 	}
-	public String getAired_episodes() {
-		return aired_episodes;
+
+	public String getAiredEpisodes() {
+		return airedEpisodes;
 	}
-	public void setAired_episodes(String aired_episodes) {
-		this.aired_episodes = aired_episodes;
+
+	public void setAiredEpisodes(String airedEpisodes) {
+		this.airedEpisodes = airedEpisodes;
 	}
+
 	public String getGenre() {
 		return genre;
 	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+
 	public String getHashtag() {
 		return hashtag;
 	}
+
 	public void setHashtag(String hashtag) {
 		this.hashtag = hashtag;
 	}
-	public String getImdb_id() {
-		return imdb_id;
+
+	public String getImdbId() {
+		return imdbId;
 	}
-	public void setImdb_id(String imdb_id) {
-		this.imdb_id = imdb_id;
+
+	public void setImdbId(String imdbId) {
+		this.imdbId = imdbId;
 	}
+	
+	
 	
 	
 }

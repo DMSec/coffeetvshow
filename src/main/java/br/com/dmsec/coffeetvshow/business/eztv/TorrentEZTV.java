@@ -29,17 +29,17 @@ public class TorrentEZTV {
 	private Long id;
 	private String hash;
 	private String filename;
-	private String episode_url;
-	private String torrent_url;
-	private String magnet_url;
+	private String episodeUrl;
+	private String torrentUrl;
+	private String magnetUrl;
 	private String title;
-	private String imdb_id;
+	private String imdbId;
 	private int season;
 	private int episode;
 	private String seeds;
 	private String peers;
-	private String date_released_unix;
-	private String size_bytes;
+	private String dateReleasedUnix;
+	private String sizeBytes;
 	public Long getId() {
 		return id;
 	}
@@ -58,23 +58,23 @@ public class TorrentEZTV {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public String getEpisode_url() {
-		return episode_url;
+	public String getEpisodeUrl() {
+		return episodeUrl;
 	}
-	public void setEpisode_url(String episode_url) {
-		this.episode_url = episode_url;
+	public void setEpisodeUrl(String episodeUrl) {
+		this.episodeUrl = episodeUrl;
 	}
-	public String getTorrent_url() {
-		return torrent_url;
+	public String getTorrentUrl() {
+		return torrentUrl;
 	}
-	public void setTorrent_url(String torrent_url) {
-		this.torrent_url = torrent_url;
+	public void setTorrentUrl(String torrentUrl) {
+		this.torrentUrl = torrentUrl;
 	}
-	public String getMagnet_url() {
-		return magnet_url;
+	public String getMagnetUrl() {
+		return magnetUrl;
 	}
-	public void setMagnet_url(String magnet_url) {
-		this.magnet_url = magnet_url;
+	public void setMagnetUrl(String magnetUrl) {
+		this.magnetUrl = magnetUrl;
 	}
 	public String getTitle() {
 		return title;
@@ -82,11 +82,11 @@ public class TorrentEZTV {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getImdb_id() {
-		return imdb_id;
+	public String getImdbId() {
+		return imdbId;
 	}
-	public void setImdb_id(String imdb_id) {
-		this.imdb_id = imdb_id;
+	public void setImdbId(String imdbId) {
+		this.imdbId = imdbId;
 	}
 	public int getSeason() {
 		return season;
@@ -112,19 +112,18 @@ public class TorrentEZTV {
 	public void setPeers(String peers) {
 		this.peers = peers;
 	}
-	public String getDate_released_unix() {
-		return date_released_unix;
+	public String getDateReleasedUnix() {
+		return dateReleasedUnix;
 	}
-	public void setDate_released_unix(String date_released_unix) {
-		this.date_released_unix = date_released_unix;
+	public void setDateReleasedUnix(String dateReleasedUnix) {
+		this.dateReleasedUnix = dateReleasedUnix;
 	}
-	public String getSize_bytes() {
-		return size_bytes;
+	public String getSizeBytes() {
+		return sizeBytes;
 	}
-	public void setSize_bytes(String size_bytes) {
-		this.size_bytes = size_bytes;
+	public void setSizeBytes(String sizeBytes) {
+		this.sizeBytes = sizeBytes;
 	}
-
 	
 	
 }

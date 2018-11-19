@@ -9,7 +9,8 @@ package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+
+
 public class Message implements Serializable {
     
 	private String result;

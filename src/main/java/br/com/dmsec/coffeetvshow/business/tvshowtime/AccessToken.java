@@ -7,23 +7,22 @@
 
 package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
-@SuppressWarnings("serial")
 public class AccessToken extends Message {
 
-	private String access_token;
+	private String accessToken;
 
-    public String getAccess_token() {
-        return access_token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     @Override
     public String toString() {
         return "AccessToken{" +
-                "access_token='" + access_token + '\'' +
+                "access_token='" + accessToken + '\'' +
                 '}';
     }
 }

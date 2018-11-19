@@ -35,7 +35,6 @@ import br.com.dmsec.coffeetvshow.business.tvshowtime.Message;
 import br.com.dmsec.coffeetvshow.business.tvshowtime.ShowTST;
 import br.com.dmsec.coffeetvshow.config.PMSConfig;
 import br.com.dmsec.coffeetvshow.config.TVShowTimeConfig;
-import br.com.dmsec.coffeetvshow.repository.EpisodeRepository;
 import br.com.dmsec.coffeetvshow.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,8 +84,8 @@ public class AppMain {
 	private AccessToken accessToken;
 	private Timer tokenTimer;
 
-	@Autowired
-	private EpisodeRepository repository;
+	//@Autowired
+	//private EpisodeRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppMain.class, args);
@@ -150,7 +149,7 @@ public class AppMain {
 
 		String toWatchURL = new StringBuilder(TVST_TO_WATCH)
 				.append("?access_token=")
-				.append(accessToken.getAccess_token())
+				.append(accessToken.getAccessToken())
 				.append("&limit=300")
 				.toString();
 
@@ -178,15 +177,15 @@ public class AppMain {
 				episodeTST.setName(jsonobj_episode.getString("name"));
 				episodeTST.setNumber(Integer.valueOf(jsonobj_episode.getString("number")));
 				episodeTST.setSeason_number(Integer.valueOf(jsonobj_episode.getString("season_number")));
-				episodeTST.setAir_date(jsonobj_episode.getString("air_date"));
-				episodeTST.setAir_time(jsonobj_episode.getString("air_time"));
+				episodeTST.setAirDate(jsonobj_episode.getString("air_date"));
+				episodeTST.setAirTime(jsonobj_episode.getString("air_time"));
 				episodeTST.setNetwork(jsonobj_episode.getString("network"));
 				episodeTST.setOverview(jsonobj_episode.getString("overview"));
-				episodeTST.setNb_comments(jsonobj_episode.getString("nb_comments"));
+				episodeTST.setNbComments(jsonobj_episode.getString("nb_comments"));
 				episodeTST.setIs_new(jsonobj_episode.getString("is_new"));
 				episodeTST.setSeen(jsonobj_episode.getString("seen"));
-				episodeTST.setPrevious_episode(jsonobj_episode.getString("previous_episode"));
-				episodeTST.setNext_episode(jsonobj_episode.getString("next_episode"));
+				episodeTST.setPreviousEpisode(jsonobj_episode.getString("previous_episode"));
+				episodeTST.setNextEpisode(jsonobj_episode.getString("next_episode"));
 
 
 				//Load Show
@@ -194,14 +193,14 @@ public class AppMain {
 				ShowTST showTST = new ShowTST();
 				showTST.setId(Long.valueOf(jsonobj_show.getString("id")));
 				showTST.setName(jsonobj_show.getString("name"));
-				showTST.setSeen_episodes(jsonobj_show.getString("seen_episodes"));
-				showTST.setAired_episodes(jsonobj_show.getString("aired_episodes"));
+				showTST.setSeenEpisodes(jsonobj_show.getString("seen_episodes"));
+				showTST.setAiredEpisodes(jsonobj_show.getString("aired_episodes"));
 				showTST.setGenre(jsonobj_show.getString("genre"));
 				showTST.setHashtag(jsonobj_show.getString("hashtag"));
 
 				//Call the OMDBAPI 
 				String imdb_id = requestIMDBID(showTST.getName());
-				showTST.setImdb_id(imdb_id.replaceAll("tt", ""));
+				showTST.setImdbId(imdb_id.replaceAll("tt", ""));
 
 				//add show to episode
 				episodeTST.setShow(showTST);
@@ -251,11 +250,11 @@ public class AppMain {
 		 */
 		while(it.hasNext()) {
 			EpisodeCoffee episodeCoffee = it.next();
-			LOG.info("IMDB to find on EZTV: " + episodeCoffee.getEpisodeTST().getShow().getImdb_id());
+			LOG.info("IMDB to find on EZTV: " + episodeCoffee.getEpisodeTST().getShow().getImdbId());
 
 
 			try {
-				ResponseEntity<String> content_1 = requestEZTV(episodeCoffee.getEpisodeTST().getShow().getImdb_id(), 1, entity);
+				ResponseEntity<String> content_1 = requestEZTV(episodeCoffee.getEpisodeTST().getShow().getImdbId(), 1, entity);
 				String message_1 = content_1.getBody();
 				JSONObject jsonobj_eztv_1 = new JSONObject(message_1);
 				int torrents_count_1 = jsonobj_eztv_1.getInt("torrents_count");
@@ -273,10 +272,10 @@ public class AppMain {
 				}
 
 				if(torrents_count_1 > 100) {
-					ResponseEntity<String> content_2 = requestEZTV(episodeCoffee.getEpisodeTST().getShow().getImdb_id(), 2, entity);
+					ResponseEntity<String> content_2 = requestEZTV(episodeCoffee.getEpisodeTST().getShow().getImdbId(), 2, entity);
 					String message_2 = content_2.getBody();
 					JSONObject jsonobj_eztv_2 = new JSONObject(message_2);
-					int torrents_count_2 = jsonobj_eztv_2.getInt("torrents_count");
+					//int torrents_count_2 = jsonobj_eztv_2.getInt("torrents_count");
 					JSONArray jsonarr_torrents_2 = (JSONArray) jsonobj_eztv_2.get("torrents");
 					
 					for(int i=0;i<jsonarr_torrents_2.length();i++){
@@ -329,17 +328,17 @@ public class AppMain {
 		torrentEZTV.setId(Long.valueOf(jsonobj_eztv.getString("id")));
 		torrentEZTV.setHash(jsonobj_eztv.getString("hash"));
 		torrentEZTV.setFilename(jsonobj_eztv.getString("filename"));
-		torrentEZTV.setEpisode_url(jsonobj_eztv.getString("episode_url"));
-		torrentEZTV.setTorrent_url(jsonobj_eztv.getString("torrent_url"));
-		torrentEZTV.setMagnet_url(jsonobj_eztv.getString("magnet_url"));
+		torrentEZTV.setEpisodeUrl(jsonobj_eztv.getString("episode_url"));
+		torrentEZTV.setTorrentUrl(jsonobj_eztv.getString("torrent_url"));
+		torrentEZTV.setMagnetUrl(jsonobj_eztv.getString("magnet_url"));
 		torrentEZTV.setTitle(jsonobj_eztv.getString("title"));
-		torrentEZTV.setImdb_id(jsonobj_eztv.getString("imdb_id"));
+		torrentEZTV.setImdbId(jsonobj_eztv.getString("imdb_id"));
 		torrentEZTV.setSeason(jsonobj_eztv.getInt("season"));
 		torrentEZTV.setEpisode(jsonobj_eztv.getInt("episode"));
 		torrentEZTV.setSeeds(jsonobj_eztv.getString("seeds"));
 		torrentEZTV.setPeers(jsonobj_eztv.getString("peers"));
-		torrentEZTV.setDate_released_unix(jsonobj_eztv.getString("date_released_unix"));
-		torrentEZTV.setSize_bytes(jsonobj_eztv.getString("size_bytes"));
+		torrentEZTV.setDateReleasedUnix(jsonobj_eztv.getString("date_released_unix"));
+		torrentEZTV.setSizeBytes(jsonobj_eztv.getString("size_bytes"));
 		
 		return torrentEZTV;
 	}
@@ -399,17 +398,17 @@ public class AppMain {
 			AuthorizationCode authorizationCode = content.getBody();
 
 			if (authorizationCode.getResult().equals("OK")) {
-				LOG.info("Linking with your TVShowTime account using the code " + authorizationCode.getDevice_code());
-				LOG.info("Please open the URL " + authorizationCode.getVerification_url() + " in your browser");
+				LOG.info("Linking with your TVShowTime account using the code " + authorizationCode.getDeviceCode());
+				LOG.info("Please open the URL " + authorizationCode.getVerificationUrl() + " in your browser");
 				LOG.info("Connect with your TVShowTime account and type in the following code : ");
-				LOG.info(authorizationCode.getUser_code());
+				LOG.info(authorizationCode.getUserCode());
 				LOG.info("Waiting for you to type in the code in TVShowTime :-D ...");
 
 				tokenTimer = new Timer();
 				tokenTimer.scheduleAtFixedRate(new TimerTask() {
 					@Override
 					public void run() {
-						loadAccessToken(authorizationCode.getDevice_code());
+						loadAccessToken(authorizationCode.getDeviceCode());
 					}
 				}, 1000 * authorizationCode.getInterval(), 1000 * authorizationCode.getInterval());
 			} else {
@@ -537,7 +536,7 @@ public class AppMain {
 
 		String checkinUrl = new StringBuilder(TVST_CHECKIN_URI)
 				.append("?access_token=")
-				.append(accessToken.getAccess_token())
+				.append(accessToken.getAccessToken())
 				.toString();
 
 		ResponseEntity<Message> content = tvShowTimeTemplate.exchange(checkinUrl, POST, entity, Message.class);

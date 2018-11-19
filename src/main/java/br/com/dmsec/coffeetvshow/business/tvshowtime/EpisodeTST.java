@@ -17,20 +17,17 @@ public class EpisodeTST {
 	private String name;
 	private int number;
 	private int season_number;
-	private String air_date;
-	private String air_time;
+	private String airDate;
+	private String airTime;
 	private String network;
 	private String overview;
-	private String nb_comments;
+	private String nbComments;
 	private String is_new;
 	
 	private String seen;
-	private String previous_episode;
-	private String next_episode;
+	private String previousEpisode;
+	private String nextEpisode;
 	private ShowTST show;
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -55,17 +52,17 @@ public class EpisodeTST {
 	public void setSeason_number(int season_number) {
 		this.season_number = season_number;
 	}
-	public String getAir_date() {
-		return air_date;
+	public String getAirDate() {
+		return airDate;
 	}
-	public void setAir_date(String air_date) {
-		this.air_date = air_date;
+	public void setAirDate(String airDate) {
+		this.airDate = airDate;
 	}
-	public String getAir_time() {
-		return air_time;
+	public String getAirTime() {
+		return airTime;
 	}
-	public void setAir_time(String air_time) {
-		this.air_time = air_time;
+	public void setAirTime(String airTime) {
+		this.airTime = airTime;
 	}
 	public String getNetwork() {
 		return network;
@@ -79,13 +76,12 @@ public class EpisodeTST {
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
-	public String getNb_comments() {
-		return nb_comments;
+	public String getNbComments() {
+		return nbComments;
 	}
-	public void setNb_comments(String nb_comments) {
-		this.nb_comments = nb_comments;
+	public void setNbComments(String nbComments) {
+		this.nbComments = nbComments;
 	}
-
 	public String getIs_new() {
 		return is_new;
 	}
@@ -98,25 +94,26 @@ public class EpisodeTST {
 	public void setSeen(String seen) {
 		this.seen = seen;
 	}
-	
-	public String getPrevious_episode() {
-		return previous_episode;
+	public String getPreviousEpisode() {
+		return previousEpisode;
 	}
-	public void setPrevious_episode(String previous_episode) {
-		this.previous_episode = previous_episode;
+	public void setPreviousEpisode(String previousEpisode) {
+		this.previousEpisode = previousEpisode;
 	}
-	public String getNext_episode() {
-		return next_episode;
+	public String getNextEpisode() {
+		return nextEpisode;
 	}
-	public void setNext_episode(String next_episode) {
-		this.next_episode = next_episode;
+	public void setNextEpisode(String nextEpisode) {
+		this.nextEpisode = nextEpisode;
 	}
 	public ShowTST getShow() {
 		return show;
 	}
 	public void setShow(ShowTST show) {
 		this.show = show;
-	}	
+	}
+	
+	
 	
 	
 	
