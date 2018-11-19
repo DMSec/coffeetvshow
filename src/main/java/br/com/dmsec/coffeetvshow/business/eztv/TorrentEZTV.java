@@ -34,10 +34,10 @@ public class TorrentEZTV {
 	private String magnet_url;
 	private String title;
 	private String imdb_id;
-	private String season;
-	private String episode;
-	private int seeds;
-	private int peers;
+	private int season;
+	private int episode;
+	private String seeds;
+	private String peers;
 	private String date_released_unix;
 	private String size_bytes;
 	public Long getId() {
@@ -88,28 +88,28 @@ public class TorrentEZTV {
 	public void setImdb_id(String imdb_id) {
 		this.imdb_id = imdb_id;
 	}
-	public String getSeason() {
+	public int getSeason() {
 		return season;
 	}
-	public void setSeason(String season) {
+	public void setSeason(int season) {
 		this.season = season;
 	}
-	public String getEpisode() {
+	public int getEpisode() {
 		return episode;
 	}
-	public void setEpisode(String episode) {
+	public void setEpisode(int episode) {
 		this.episode = episode;
 	}
-	public int getSeeds() {
+	public String getSeeds() {
 		return seeds;
 	}
-	public void setSeeds(int seeds) {
+	public void setSeeds(String seeds) {
 		this.seeds = seeds;
 	}
-	public int getPeers() {
+	public String getPeers() {
 		return peers;
 	}
-	public void setPeers(int peers) {
+	public void setPeers(String peers) {
 		this.peers = peers;
 	}
 	public String getDate_released_unix() {

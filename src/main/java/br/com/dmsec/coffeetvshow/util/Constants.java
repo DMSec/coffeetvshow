@@ -10,7 +10,7 @@ package br.com.dmsec.coffeetvshow.util;
 public class Constants {
     public static final String TVST_CLIENT_ID = "-COGBbPt1-gM76uWrYLc";
     public static final String TVST_CLIENT_SECRET = "xThbKVEe_cJSxLGBS4k0Wz3zjrC987cwqV4edsAQ";
-    public static final String TVST_USER_AGENT = "tvshowtime-plex";
+    public static final String TVST_USER_AGENT = "coffeetvshow";
     public static final String TVST_RATE_REMAINING_HEADER = "X-RateLimit-Remaining";
     public static final String TVST_AUTHORIZE_URI = "https://api.tvshowtime.com/v1/oauth/device/code";
     public static final String TVST_ACCESS_TOKEN_URI = "https://api.tvshowtime.com/v1/oauth/access_token";
