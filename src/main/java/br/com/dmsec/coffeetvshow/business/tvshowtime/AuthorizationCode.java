@@ -7,6 +7,7 @@
 
 package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
+@SuppressWarnings("serial")
 public class AuthorizationCode extends Message {
     
 	private String device_code;

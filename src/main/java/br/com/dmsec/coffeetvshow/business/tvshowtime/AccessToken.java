@@ -7,6 +7,7 @@
 
 package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
+@SuppressWarnings("serial")
 public class AccessToken extends Message {
 
 	private String access_token;
