@@ -146,12 +146,12 @@ public class AppMain {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		headers.add("User-Agent", TVST_USER_AGENT);
-		headers.add("limit","300");
 		HttpEntity<String> entity = new HttpEntity<>("parameters",headers);
 
 		String toWatchURL = new StringBuilder(TVST_TO_WATCH)
 				.append("?access_token=")
 				.append(accessToken.getAccess_token())
+				.append("&limit=300")
 				.toString();
 
 		ResponseEntity<String> content = tvShowTimeTemplate.exchange(toWatchURL, GET, entity, String.class);
@@ -357,12 +357,20 @@ public class AppMain {
 
 
 		LOG.info("FIND the IMDB_ID: "+ name);
-		ResponseEntity<String> content = omdbTemplate.exchange(omdb_uri, GET, entity, String.class);
-		String message = content.getBody();
+		String imdbId = "";
+		try {
+			ResponseEntity<String> content = omdbTemplate.exchange(omdb_uri, GET, entity, String.class);
+			String message = content.getBody();
 
-		JSONObject jsonobj_omdb = new JSONObject(message); 
-		String imdbId = jsonobj_omdb.getString("imdbID");
-		LOG.info("FIND the IMDB_ID: "+ name +" founded: "+ imdbId);
+			JSONObject jsonobj_omdb = new JSONObject(message); 
+			imdbId = jsonobj_omdb.getString("imdbID");
+			LOG.info("FIND the IMDB_ID: "+ name +" founded: "+ imdbId);
+			
+		}catch(Exception e) {
+			LOG.error("Error requestIMDBID: "+ e.getMessage());
+		}
+		
+
 		return imdbId;
 
 	}
