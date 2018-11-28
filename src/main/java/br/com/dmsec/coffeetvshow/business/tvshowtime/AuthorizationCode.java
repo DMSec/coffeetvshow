@@ -11,59 +11,86 @@ package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
 public class AuthorizationCode extends Message {
     
-	private String deviceCode;
-    private String userCode;
-    private String verificationUrl;
-    private Integer expiresIn;
+	private String device_code;
+    private String user_code;
+    private String verification_url;
+    private Integer expires_in;
     private Integer interval;
     
     
 
-    public String getDeviceCode() {
-		return deviceCode;
+
+
+
+	public String getDevice_code() {
+		return device_code;
 	}
 
 
 
-	public void setDeviceCode(String deviceCode) {
-		this.deviceCode = deviceCode;
+
+
+
+	public void setDevice_code(String device_code) {
+		this.device_code = device_code;
 	}
 
 
 
-	public String getUserCode() {
-		return userCode;
+
+
+
+	public String getUser_code() {
+		return user_code;
 	}
 
 
 
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+
+
+
+	public void setUser_code(String user_code) {
+		this.user_code = user_code;
 	}
 
 
 
-	public String getVerificationUrl() {
-		return verificationUrl;
+
+
+
+	public String getVerification_url() {
+		return verification_url;
 	}
 
 
 
-	public void setVerificationUrl(String verificationUrl) {
-		this.verificationUrl = verificationUrl;
+
+
+
+	public void setVerification_url(String verification_url) {
+		this.verification_url = verification_url;
 	}
 
 
 
-	public Integer getExpiresIn() {
-		return expiresIn;
+
+
+
+	public Integer getExpires_in() {
+		return expires_in;
 	}
 
 
 
-	public void setExpiresIn(Integer expiresIn) {
-		this.expiresIn = expiresIn;
+
+
+
+	public void setExpires_in(Integer expires_in) {
+		this.expires_in = expires_in;
 	}
+
+
+
 
 
 
@@ -73,19 +100,25 @@ public class AuthorizationCode extends Message {
 
 
 
+
+
+
 	public void setInterval(Integer interval) {
 		this.interval = interval;
 	}
 
 
 
+
+
+
 	@Override
     public String toString() {
         return "AuthorizationCode{" +
-                "device_code='" + deviceCode + '\'' +
-                ", user_code='" + userCode + '\'' +
-                ", verification_url='" + verificationUrl + '\'' +
-                ", expires_in=" + expiresIn +
+                "device_code='" + device_code + '\'' +
+                ", user_code='" + user_code + '\'' +
+                ", verification_url='" + verification_url + '\'' +
+                ", expires_in=" + expires_in +
                 ", interval=" + interval +
                 '}';
     }

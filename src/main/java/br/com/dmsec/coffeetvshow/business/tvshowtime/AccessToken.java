@@ -9,20 +9,26 @@ package br.com.dmsec.coffeetvshow.business.tvshowtime;
 
 public class AccessToken extends Message {
 
-	private String accessToken;
+	private String access_token;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
+   
 
     @Override
     public String toString() {
         return "AccessToken{" +
-                "access_token='" + accessToken + '\'' +
+                "access_token='" + access_token + '\'' +
                 '}';
     }
+
+
+
+	public String getAccess_token() {
+		return access_token;
+	}
+
+
+
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
 }

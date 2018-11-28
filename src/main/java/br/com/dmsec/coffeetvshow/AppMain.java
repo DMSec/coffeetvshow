@@ -112,24 +112,24 @@ public class AppMain {
 
 				System.exit(1);
 			}
-			//				Original para marcar o que foi assistido.
-			//            try {
-			//                processWatchedEpisodes();
-			//            } catch (Exception e) {
-			//                LOG.error("Error during marking episodes as watched.");
-			//                LOG.error(e.getMessage());
-			//                System.exit(1);
-			//            }
+							//Original para marcar o que foi assistido.
+			            try {
+			                processWatchedEpisodes();
+			            } catch (Exception e) {
+			                LOG.error("Error during marking episodes as watched.");
+			                LOG.error(e.getMessage());
+			                System.exit(1);
+			            }
 
-			try {
-				List<EpisodeCoffee> listEpisodeToWatch = loadToWatchTST();
-				List<EpisodeCoffee> listEpisodeToDownload = findTorrentURL(listEpisodeToWatch);
-				LOG.info("Retornei para o init");
-
-
-			}catch(Exception e) {
-				LOG.error(e.getMessage());
-			}
+//			try {
+//				List<EpisodeCoffee> listEpisodeToWatch = loadToWatchTST();
+//				List<EpisodeCoffee> listEpisodeToDownload = findTorrentURL(listEpisodeToWatch);
+//				LOG.info("Retornei para o init");
+//
+//
+//			}catch(Exception e) {
+//				LOG.error(e.getMessage());
+//			}
 
 		} else {
 			requestAccessToken();
@@ -149,7 +149,7 @@ public class AppMain {
 
 		String toWatchURL = new StringBuilder(TVST_TO_WATCH)
 				.append("?access_token=")
-				.append(accessToken.getAccessToken())
+				.append(accessToken.getAccess_token())
 				.append("&limit=300")
 				.toString();
 
@@ -398,17 +398,17 @@ public class AppMain {
 			AuthorizationCode authorizationCode = content.getBody();
 
 			if (authorizationCode.getResult().equals("OK")) {
-				LOG.info("Linking with your TVShowTime account using the code " + authorizationCode.getDeviceCode());
-				LOG.info("Please open the URL " + authorizationCode.getVerificationUrl() + " in your browser");
+				LOG.info("Linking with your TVShowTime account using the code " + authorizationCode.getDevice_code());
+				LOG.info("Please open the URL " + authorizationCode.getVerification_url() + " in your browser");
 				LOG.info("Connect with your TVShowTime account and type in the following code : ");
-				LOG.info(authorizationCode.getUserCode());
+				LOG.info(authorizationCode.getUser_code());
 				LOG.info("Waiting for you to type in the code in TVShowTime :-D ...");
 
 				tokenTimer = new Timer();
 				tokenTimer.scheduleAtFixedRate(new TimerTask() {
 					@Override
 					public void run() {
-						loadAccessToken(authorizationCode.getDeviceCode());
+						loadAccessToken(authorizationCode.getDevice_code());
 					}
 				}, 1000 * authorizationCode.getInterval(), 1000 * authorizationCode.getInterval());
 			} else {
@@ -536,7 +536,7 @@ public class AppMain {
 
 		String checkinUrl = new StringBuilder(TVST_CHECKIN_URI)
 				.append("?access_token=")
-				.append(accessToken.getAccessToken())
+				.append(accessToken.getAccess_token())
 				.toString();
 
 		ResponseEntity<Message> content = tvShowTimeTemplate.exchange(checkinUrl, POST, entity, Message.class);
