@@ -19,10 +19,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.simple.parser.ParseException;
+
 import br.com.dmsec.coffeetvshow.business.coffeetvshow.EpisodeCoffee;
 import br.com.dmsec.coffeetvshow.business.eztv.TorrentEZTV;
 import br.com.dmsec.coffeetvshow.business.plex.MediaContainer;
@@ -41,6 +38,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.expression.ParseException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -61,8 +62,6 @@ import static br.com.dmsec.coffeetvshow.util.Constants.TVST_TO_WATCH;
 import static br.com.dmsec.coffeetvshow.util.Constants.TVST_USER_AGENT;
 import static br.com.dmsec.coffeetvshow.util.Constants.OMDB_URI;
 import static br.com.dmsec.coffeetvshow.util.Constants.EZTV_URI;
-
-
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.GET;
 
@@ -91,7 +90,7 @@ public class AppMain {
 		SpringApplication.run(AppMain.class, args);
 	}
 
-	@Scheduled(fixedDelay = Long.MAX_VALUE)
+	@Scheduled(fixedDelay = 3600000)
 	public void init() {
 		tvShowTimeTemplate = new RestTemplate();
 
@@ -516,15 +515,15 @@ public class AppMain {
 						continue;
 					}
 				} else {
-					LOG.info("All episodes are processed successfully ...");
-					System.exit(0);
+					//LOG.info("All episodes are processed successfully ...");
+					//System.exit(0);
 				}
 			}
 
 
 		}else {
 			LOG.info("MediaContainer = 0");
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 

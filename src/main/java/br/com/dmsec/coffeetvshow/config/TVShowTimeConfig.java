@@ -8,9 +8,9 @@
 package br.com.dmsec.coffeetvshow.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-@Component
+
+
 @ConfigurationProperties(prefix = "coffeetvshow.tvshowtime")
 public class TVShowTimeConfig {
     private String tokenFile;

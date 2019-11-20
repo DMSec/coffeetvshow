@@ -7,10 +7,11 @@
 
 package br.com.dmsec.coffeetvshow.business.plex;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 
 @XmlRootElement(name = "MediaContainer")
 public class MediaContainer {
